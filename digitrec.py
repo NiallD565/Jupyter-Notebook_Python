@@ -37,6 +37,8 @@ import keras as kr
 import tensorflow as tf
 # Importing the required Keras modules containing model and layers
 from keras.models import Sequential
+from keras.layers import Dropout 
+
 # Start a neural network, building it by layers.
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
@@ -44,10 +46,14 @@ model = kr.models.Sequential()
 model.add(kr.layers.Dense(units=650, activation='relu'))
 # Add a hidden layer with 325 neurons and an input layer with 784.
 model.add(kr.layers.Dense(units=325, activation='sigmoid'))
+# Add a hidden layer with 210 neurons and an input layer with 784.
+model.add(kr.layers.Dense(units=210, activation='relu'))
 # Add a hidden layer with 150 neurons and an input layer with 784.
-model.add(kr.layers.Dense(units=150, activation='relu'))
+model.add(kr.layers.Dense(units=150, activation='linear'))
 # Add a hidden layer with 50 neurons and an input layer with 784.
 model.add(kr.layers.Dense(units=50, activation='relu'))
+# Dropout drops random biases within the network as it trains
+model.add(Dropout(0.2))
 # Add a three neuron output layer.
 model.add(kr.layers.Dense(units=10, activation='softmax'))
 
@@ -55,4 +61,15 @@ model.add(kr.layers.Dense(units=10, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Don't run this unless you really want to
-model.fit(inputs, outputs, epochs=5, batch_size=15)
+model.fit(inputs, outputs, epochs=5, batch_size=100)
+
+with gzip.open('data/t10k-images-idx3-ubyte.gz', 'rb') as f:
+    test_img = f.read()
+
+with gzip.open('data/t10k-labels-idx1-ubyte.gz', 'rb') as f:
+    test_lbl = f.read()
+    
+test_img = ~np.array(list(test_img[16:])).reshape(10000, 784).astype(np.uint8) / 255.0
+test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
+
+print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())

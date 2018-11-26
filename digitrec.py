@@ -11,10 +11,7 @@ with gzip.open('data/t10k-labels-idx1-ubyte.gz', 'rb') as f:
     file_content_labels = f.read()
 	
 	
-# %matplotlib inline
-get_ipython().magic('matplotlib inline')
 
-import matplotlib.pyplot as plt
 import numpy as np
 # Import keras.
 import keras as kr

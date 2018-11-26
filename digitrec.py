@@ -41,7 +41,9 @@ from keras.models import Sequential
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
 # Add a hidden layer with 300 neurons and an input layer with 784.
-model.add(kr.layers.Dense(units=300, activation='relu'))
+model.add(kr.layers.Dense(units=650, activation='relu'))
+# Add a hidden layer with 325 neurons and an input layer with 784.
+model.add(kr.layers.Dense(units=325, activation='sigmoid'))
 # Add a hidden layer with 150 neurons and an input layer with 784.
 model.add(kr.layers.Dense(units=150, activation='relu'))
 # Add a hidden layer with 50 neurons and an input layer with 784.

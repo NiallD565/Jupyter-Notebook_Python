@@ -42,26 +42,27 @@ from keras.layers import Dropout
 # Start a neural network, building it by layers.
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
-# Add a hidden layer with 300 neurons and an input layer with 784.
-model.add(kr.layers.Dense(units=650, activation='relu'))
-# Add a hidden layer with 325 neurons and an input layer with 784.
+# Add a hidden layer with 300 neurons.
+model.add(kr.layers.Dense(units=700, activation='relu'))
+# Add a hidden layer with 325 neurons.
 model.add(kr.layers.Dense(units=325, activation='sigmoid'))
-# Add a hidden layer with 210 neurons and an input layer with 784.
+# Add a hidden layer with 210 neurons.
 model.add(kr.layers.Dense(units=210, activation='relu'))
-# Add a hidden layer with 150 neurons and an input layer with 784.
+# Add a hidden layer with 150 neurons.
 model.add(kr.layers.Dense(units=150, activation='linear'))
-# Add a hidden layer with 50 neurons and an input layer with 784.
+# Add a hidden layer with 150 neurons.
+model.add(kr.layers.Dense(units=100, activation='linear'))
+# Add a hidden layer with 50 neurons.
 model.add(kr.layers.Dense(units=50, activation='relu'))
-# Dropout drops random biases within the network as it trains
-model.add(Dropout(0.2))
+
 # Add a three neuron output layer.
 model.add(kr.layers.Dense(units=10, activation='softmax'))
 
 # Build the graph.
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-# Don't run this unless you really want to
-model.fit(inputs, outputs, epochs=5, batch_size=100)
+# Number of Epoch is the amount of times the training set is put through the model
+# The batch size is the amount of images the models processes at one time
+model.fit(inputs, outputs, epochs=10, batch_size=100)
 
 with gzip.open('data/t10k-images-idx3-ubyte.gz', 'rb') as f:
     test_img = f.read()

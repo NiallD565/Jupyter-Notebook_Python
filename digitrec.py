@@ -43,17 +43,18 @@ from keras.layers import Dropout
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
 # Add a hidden layer with 700 neurons.
-model.add(kr.layers.Dense(units=1000, activation='relu'))
+model.add(kr.layers.Dense(units=750, activation='relu'))
 # Add a hidden layer with 325 neurons.
-model.add(kr.layers.Dense(units=325, activation='sigmoid'))
+model.add(kr.layers.Dense(units=455, activation='sigmoid'))
 # Add a hidden layer with 210 neurons.
-model.add(kr.layers.Dense(units=210, activation='relu'))
+model.add(kr.layers.Dense(units=250, activation='relu'))
 # Add a hidden layer with 150 neurons.
-model.add(kr.layers.Dense(units=150, activation='softplus'))
+model.add(kr.layers.Dense(units=170, activation='softplus'))
 # Add a hidden layer with 100 neurons.
-model.add(kr.layers.Dense(units=100, activation='linear'))
+model.add(kr.layers.Dense(units=120, activation='linear'))
 # Add a hidden layer with 50 neurons.
-model.add(kr.layers.Dense(units=50, activation='tanh'))
+model.add(kr.layers.Dense(units=50, activation='relu'))
+model.add(Dropout(0.2))
 
 # Add a three neuron output layer.
 model.add(kr.layers.Dense(units=10, activation='softmax'))

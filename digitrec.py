@@ -43,9 +43,9 @@ from keras.layers import Dropout
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
 # Add a hidden layer with 700 neurons.
-model.add(kr.layers.Dense(units=750, activation='relu'))
+model.add(kr.layers.Dense(units=750, activation='relu', input_dim=784))
 # Add a hidden layer with 325 neurons.
-model.add(kr.layers.Dense(units=455, activation='sigmoid'))
+model.add(kr.layers.Dense(units=455, activation='relu'))
 # Add a hidden layer with 210 neurons.
 model.add(kr.layers.Dense(units=250, activation='relu'))
 # Add a hidden layer with 150 neurons.
@@ -63,7 +63,7 @@ model.add(kr.layers.Dense(units=10, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 # Number of Epoch is the amount of times the training set is put through the model
 # The batch size is the amount of images the models processes at one time
-model.fit(inputs, outputs, epochs=10, batch_size=100)
+model.fit(inputs, outputs, epochs=8, batch_size=100)
 
 with gzip.open('data/t10k-images-idx3-ubyte.gz', 'rb') as f:
     test_img = f.read()

@@ -19,7 +19,7 @@ with gzip.open('data/train-labels-idx1-ubyte.gz', 'rb') as f:
 train_img = ~np.array(list(train_img[16:])).reshape(60000, 28, 28).astype(np.uint8)/255.0
 train_lbl =  np.array(list(train_lbl[ 8:])).astype(np.uint8)
 
-# For encoding categorical variables.
+# For encoding categorical variables and pre processing.
 import sklearn.preprocessing as pre
 
 encoder = pre.LabelBinarizer()
@@ -54,6 +54,7 @@ model.add(kr.layers.Dense(units=170, activation='softplus'))
 model.add(kr.layers.Dense(units=120, activation='linear'))
 # Add a hidden layer with 50 neurons.
 model.add(kr.layers.Dense(units=50, activation='relu'))
+# Add a dropout layer every 1 in 5.
 model.add(Dropout(0.2))
 
 # Add a three neuron output layer.

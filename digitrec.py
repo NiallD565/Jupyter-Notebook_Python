@@ -42,15 +42,15 @@ from keras.layers import Dropout
 # Start a neural network, building it by layers.
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
-# Add a hidden layer with 700 neurons.
+# Add a hidden layer with 750 neurons.
 model.add(kr.layers.Dense(units=750, activation='relu', input_dim=784))
-# Add a hidden layer with 325 neurons.
+# Add a hidden layer with 455 neurons.
 model.add(kr.layers.Dense(units=455, activation='relu'))
-# Add a hidden layer with 210 neurons.
+# Add a hidden layer with 250 neurons.
 model.add(kr.layers.Dense(units=250, activation='relu'))
-# Add a hidden layer with 150 neurons.
+# Add a hidden layer with 170 neurons.
 model.add(kr.layers.Dense(units=170, activation='softplus'))
-# Add a hidden layer with 100 neurons.
+# Add a hidden layer with 120 neurons.
 model.add(kr.layers.Dense(units=120, activation='linear'))
 # Add a hidden layer with 50 neurons.
 model.add(kr.layers.Dense(units=50, activation='relu'))

@@ -76,3 +76,13 @@ test_img = ~np.array(list(test_img[16:])).reshape(10000, 784).astype(np.uint8) /
 test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
 
 print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())
+
+option = input("1: to retrain model: 2 to read an image:")
+if option==1:
+	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+	model.fit(inputs, outputs, epochs=8, batch_size=100)
+
+if option==2:
+	temp=np.asarray(Images/Image.open("t10k-index-0-Label-7.png"))
+	temp = np.arange(784).reshape((28, 28))
+

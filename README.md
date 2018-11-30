@@ -49,3 +49,32 @@ Python is an interpreted high-level programming language for general-purpose pro
 ### Jupyter
 <img src="https://i2.wp.com/softwareengineeringdaily.com/wp-content/uploads/2018/07/jupyter-logo-featured-image.png?fit=600%2C315&ssl=1" height="200px" width="400px">
 Project Jupyter is a nonprofit organization created to "develop open-source software, open-standards, and services for interactive computing across dozens of programming languages." Spun-off from IPython in 2014 by Fernando Pérez, Project Jupyter supports execution environments in several dozen languages.
+
+## Code
+To run this project you will first need to either download and unzip the zip file or clone this repository by running:
+
+  git clone https://github.com/NiallD565/Jupyter-Notebook_Python.git
+
+Next you will need to start the anaconda navigator once it has loaded click launch on the jupyter notebook.
+
+<img src="ReadMeImages/anacondaTable.PNG">
+
+A new tab/window will open running on local host then open you can navigate to the folder through the directory here. Once you have successfully navigated to the file click on one of the notebooks which end in the file extension ".pynb".
+
+<img src="ReadMeImages/condaTree.PNG">
+
+The notebook will then open in a new tab.
+
+<img src = "ReadMeImages/condaFolder.PNG">
+
+## Resources and References
+
+<ul>
+   <li>[1] <a href="https://github.com/ianmcloughlin/jupyter-teaching-notebooks/blob/master/pandas-with-iris.ipynb"> Project Brief</a></li>
+   <li>[2] <a href="https://www.python.org/doc/essays/blurb/">Python</a></li>
+   <li>[3] <a href="http://jupyter.org/">Jupyter</a></li>
+   <li>[4] <a href="https://jupyter-notebook.readthedocs.io/en/latest/notebook.html">Jupyter Notebook Docs</a></li>
+  
+</ul>
+
+# End

@@ -64,7 +64,7 @@ model.add(kr.layers.Dense(units=10, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 # Number of Epoch is the amount of times the training set is put through the model
 # The batch size is the amount of images the models processes at one time
-model.fit(inputs, outputs, epochs=8, batch_size=100)
+model.fit(inputs, outputs, epochs=10, batch_size=100)
 
 with gzip.open('data/t10k-images-idx3-ubyte.gz', 'rb') as f:
     test_img = f.read()
@@ -77,12 +77,32 @@ test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
 
 print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())
 
-option = input("1: to retrain model: 2 to read an image:")
-if option==1:
-	model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-	model.fit(inputs, outputs, epochs=8, batch_size=100)
+def retrainNN():
+	model.fit(inputs, outputs, epochs=10, batch_size=100)
+	print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())
 
-if option==2:
+def trainNNCustom(numEpc, btchSz):
+	model.fit(inputs, outputs, epochs=numEpc, batch_size=btchSz)
+
+
+def importImage():
 	temp=np.asarray(Images/Image.open("t10k-index-0-Label-7.png"))
-	temp = np.arange(784).reshape((28, 28))
+	# Convert to a 1 dimensioanl array with 784 nodes
+	temp = np.arange(image.image_to_array(temp).reshape((1, 784)))
+	prediction=model.predict(temp)
+	print("Prediction: ", temp.argmax(axis=1))
 
+
+option =int(input("1 to retrain model: \n2 to read an image: \n 3 to train the neural netork with custom epochs and batch size \n 0 to Quit:"))
+
+while option != 0:
+	if option==1:
+		retrainNN()
+	elif option==2:
+		importImage()
+	elif option==3:
+		numEpc = input("Enter the number of epochs: ")
+		btchSz = input("Enter batch size: ")
+		trainNNCustom(int(numEpc), int(btchSz))
+
+	option = input("1 to retrain model: \n2 to read an image: \n 0 to Quit:")

@@ -42,7 +42,7 @@ from keras.layers import Dropout
 # Start a neural network, building it by layers.
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
-# Add a hidden layer with 750 neurons.
+# Add a hidden layer with 784 neurons.
 model.add(kr.layers.Dense(units=784, activation='relu', input_dim=784))
 # Add a hidden layer with 455 neurons.
 model.add(kr.layers.Dense(units=455, activation='relu'))
@@ -78,11 +78,15 @@ test_lbl =  np.array(list(test_lbl[ 8:])).astype(np.uint8)
 print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())
 
 def retrainNN():
+	# calls the neural network to be trained again
 	model.fit(inputs, outputs, epochs=10, batch_size=100)
 	print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())
 
 def trainNNCustom(numEpc, btchSz):
+	# calls the neural network to be trained again with a given number of epochs and batch size
 	model.fit(inputs, outputs, epochs=numEpc, batch_size=btchSz)
+	print((encoder.inverse_transform(model.predict(test_img)) == test_lbl).sum())
+
 
 
 def importImage():
@@ -92,7 +96,7 @@ def importImage():
 	# Used to open image file using pillow
 	from PIL import Image
 	temp = Image.open("Images/" + imageName + ".png").convert('L')
-	# Convert to a 1 dimensioanl array with 784 nodes
+	# resizes the image to 28 x 28 pixels
 	temp = temp.resize((28, 28))
 	imgArray = np.array(temp)
 	# converts the array to a a 1D array of 784 nodes

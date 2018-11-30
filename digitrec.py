@@ -43,7 +43,7 @@ from keras.layers import Dropout
 model = kr.models.Sequential()
 # model.add(kr.layers.Flatten())
 # Add a hidden layer with 750 neurons.
-model.add(kr.layers.Dense(units=750, activation='relu', input_dim=784))
+model.add(kr.layers.Dense(units=784, activation='relu', input_dim=784))
 # Add a hidden layer with 455 neurons.
 model.add(kr.layers.Dense(units=455, activation='relu'))
 # Add a hidden layer with 250 neurons.
@@ -86,23 +86,34 @@ def trainNNCustom(numEpc, btchSz):
 
 
 def importImage():
-	temp=np.asarray(Images/Image.open("t10k-index-0-Label-7.png"))
+	imageName = input("Enter the file name: ")
+	userInput = input("Enter the label for the image uploaded: ")
+	print("The label for this image is: ", userInput)
+	# Used to open image file using pillow
+	from PIL import Image
+	temp = Image.open("Images/" + imageName + ".png").convert('L')
 	# Convert to a 1 dimensioanl array with 784 nodes
-	temp = np.arange(image.image_to_array(temp).reshape((1, 784)))
-	prediction=model.predict(temp)
-	print("Prediction: ", temp.argmax(axis=1))
+	temp = temp.resize((28, 28))
+	imgArray = np.array(temp)
+	# converts the array to a a 1D array of 784 nodes
+	imgArray = imgArray.reshape(1, 784)
 
+	prediction = model.predict(imgArray)
+	#print(prediction)
+	print("Prediction: ", prediction.argmax(axis=1))	
 
-option =int(input("1 to retrain model: \n2 to read an image: \n 3 to train the neural netork with custom epochs and batch size \n 0 to Quit:"))
-
+option =int(input("1 to retrain model: \n2 to read an image: \n3 to train the neural netork with custom epochs and batch size \n0 to Quit:"))
 while option != 0:
 	if option==1:
 		retrainNN()
+		option = input("1 to retrain model: \n2 to read an image: \n3 to train the neural netork with custom epochs and batch size \n 0 to Quit:")
 	elif option==2:
 		importImage()
+		option = input("1 to retrain model: \n2 to read an image: \n3 to train the neural netork with custom epochs and batch size \n 0 to Quit:")
 	elif option==3:
 		numEpc = input("Enter the number of epochs: ")
 		btchSz = input("Enter batch size: ")
 		trainNNCustom(int(numEpc), int(btchSz))
-
-	option = input("1 to retrain model: \n2 to read an image: \n 0 to Quit:")
+		option = input("1 to retrain model: \n2 to read an image: \n3 to train the neural netork with custom epochs and batch size \n 0 to Quit:")
+	else:
+		exit()	

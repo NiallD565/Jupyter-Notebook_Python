@@ -74,6 +74,7 @@ The notebook will then open in a new tab.
    <li>[2] <a href="https://www.python.org/doc/essays/blurb/">Python</a></li>
    <li>[3] <a href="http://jupyter.org/">Jupyter</a></li>
    <li>[4] <a href="https://jupyter-notebook.readthedocs.io/en/latest/notebook.html">Jupyter Notebook Docs</a></li>
+   <li>[5] <a href="https://www.anaconda.com/">Anaconda</a></li>
   
 </ul>
 
